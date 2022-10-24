@@ -1,0 +1,9 @@
+﻿<Application x:Class="VN_Lib_v1.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:VN_Lib_v1"
+             StartupUri="MainCore.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
