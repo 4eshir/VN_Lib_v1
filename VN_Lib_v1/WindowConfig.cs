@@ -32,6 +32,12 @@ namespace VN_Lib_v1
          */
         private List<Object> _elements;
 
+
+        /*
+         * Специальные настройки окна
+         */
+        private SpecialConfig _special_config;
+
         //------------------------------------------------
 
         //------------------------------------------------
@@ -44,6 +50,7 @@ namespace VN_Lib_v1
             _current_screen_width = Constants.DEFAULT_SCREEN_WIDTH;
             _background_path = "";
             _elements = new List<Object>();
+            _special_config = new SpecialConfig();
         }
 
         public WindowConfig(WindowConfig config)
@@ -52,14 +59,16 @@ namespace VN_Lib_v1
             _current_screen_width = config.GetCurrentWidth();
             _background_path = config.GetBackgroundPath();
             _elements = config.GetElements();
+            _special_config = config.GetSpecialConfig();
         }
 
-        public WindowConfig(String new_path, int new_height, int new_width, List<Object> new_elements)
+        public WindowConfig(String new_path, int new_height, int new_width, List<Object> new_elements, SpecialConfig new_config)
         {
             _current_screen_height = new_height;
             _current_screen_width = new_width;
             _background_path = new_path;
             _elements = new_elements;
+            _special_config = new_config;
         }
 
         //-----------------------
@@ -95,6 +104,14 @@ namespace VN_Lib_v1
         //--Сеттер для изменения элементов контроля в окне--
         public void SetElements(List<Object> new_elements) { _elements = new_elements; }
         //--------------------------------------------------
+
+        //--Геттер для получения специальных конфигураций--
+        public SpecialConfig GetSpecialConfig() { return _special_config; }
+        //-------------------------------------------------
+
+        //--Сеттер для изменения специальных конфигураций--
+        public void SetSpecialConfig(SpecialConfig new_config) { _special_config = new_config; }
+        //-------------------------------------------------
 
         //------------------------------------------------
     }

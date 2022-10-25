@@ -73,15 +73,21 @@ namespace VN_Lib_v1
 
         /*
          * config.elements - все объекты в окне
-         * [0] - основной layout
-         * [1] - меню
+         * [0] - основной layout (Grid)
+         * [1] - меню (WrapPanel)
          */
         public void GenerateMainMenu()
         {
             this.Height = GameConfig.GetScreenHeight();
             this.Width = GameConfig.GetScreenWidth();
-            this.Content = config.GetElements()[0];
-            this.RegisterName("MainLayout", config.GetElements()[0]);
+
+            Grid main_grid = (Grid)config.GetElements()[0];
+            main_grid.RowDefinitions = 3;
+
+            //main_grid.Children.Add((WrapPanel)config.GetElements()[1]);
+
+            this.Content = main_grid;
+            this.RegisterName("MainLayout", main_grid);
         }
 
         public void GenerateGameplayActive()
@@ -104,30 +110,17 @@ namespace VN_Lib_v1
          */
         private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            /*WrapPanel main_panel = (WrapPanel)this.FindName("MainLayout");
-            if (main_panel != null)
+            Grid main_grid = (Grid)this.FindName("MainLayout");
+            if (main_grid != null)
             {
-                if (this.WindowState == WindowState.Maximized)
-                {
-                    main_panel.Height = this.MaxHeight;
-                    main_panel.Width = this.MaxWidth;
-                }
-                else if (this.WindowState == WindowState.Maximized)
-                {
-                    main_panel.Height = this.MinHeight;
-                    main_panel.Width = this.MinWidth;
-                }
-                else
-                {
-                    main_panel.Height = this.Height;
-                    main_panel.Width = this.Width;
-                }
+                main_grid.Height = this.ActualHeight;
+                main_grid.Width = this.ActualWidth;
                     
                 BitmapImage back = new BitmapImage
                     (new Uri(config.GetBackgroundPath(), UriKind.Relative));
                 ImageBrush backBrush = new ImageBrush(back);
-                main_panel.Background = backBrush;
-            }*/
+                main_grid.Background = backBrush;
+            }
         }
     }
 }
