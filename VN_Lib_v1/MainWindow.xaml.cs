@@ -78,16 +78,38 @@ namespace VN_Lib_v1
          */
         public void GenerateMainMenu()
         {
-            this.Height = GameConfig.GetScreenHeight();
-            this.Width = GameConfig.GetScreenWidth();
+            this.Height = GameConfig.screenHeight;
+            this.Width = GameConfig.screenWidth;
 
-            Grid main_grid = (Grid)config.GetElements()[0];
-            main_grid.RowDefinitions = 3;
+            Grid main_grid = (Grid)config.elements[0];
+            CreateGrid(main_grid);
 
             //main_grid.Children.Add((WrapPanel)config.GetElements()[1]);
 
             this.Content = main_grid;
             this.RegisterName("MainLayout", main_grid);
+        }
+
+        /*
+         * Создание сетки Grid
+         * На основе данных из WindowConfig.SpecialConfig.SpecialConfigMenu
+         */
+        private void CreateGrid(Grid g)
+        {
+            RowDefinitionCollection rd = g.RowDefinitions;
+            ColumnDefinitionCollection cd = g.ColumnDefinitions;
+            for (int i = 0; i != config.specialConfig.menuConfig.row; i++)
+            {
+                rd.Add(new RowDefinition());
+                for (int j = 0; j < config.specialConfig.menuConfig.col; j++)
+                {
+                    cd.Add(new ColumnDefinition());
+                }
+
+                Button b = new Button();
+                b.Name = "Button" + i;
+
+            }
         }
 
         public void GenerateGameplayActive()
@@ -117,7 +139,7 @@ namespace VN_Lib_v1
                 main_grid.Width = this.ActualWidth;
                     
                 BitmapImage back = new BitmapImage
-                    (new Uri(config.GetBackgroundPath(), UriKind.Relative));
+                    (new Uri(config.backgroundPath, UriKind.Relative));
                 ImageBrush backBrush = new ImageBrush(back);
                 main_grid.Background = backBrush;
             }

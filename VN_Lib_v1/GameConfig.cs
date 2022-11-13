@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace VN_Lib_v1
 {
@@ -18,14 +19,31 @@ namespace VN_Lib_v1
          * Ширина окна игры
          * ----------------
          */
-        private static int screen_width;
+        private static int _screenWidth;
+
+        //--Свойства--
+        public static int screenWidth
+        {
+            set { _screenWidth = value; }
+            get { return _screenWidth; }
+        }
+        //------------
 
         /*
          * ----------------
          * Высота окна игры
          * ----------------
          */
-        private static int screen_height;
+        private static int _screenHeight;
+
+        //--Свойства--
+        public static int screenHeight
+        {
+            set { _screenHeight = value; }
+            get { return _screenHeight; }
+        }
+        //------------
+
 
         //------------------------------------------
 
@@ -47,27 +65,11 @@ namespace VN_Lib_v1
 
         //-----------------------*/
 
-        //--Геттер для получения ширины экрана--
-        public static int GetScreenWidth() { return screen_width; }
-        //--------------------------------------
-
-        //--Геттер для получения высоты экрана--
-        public static int GetScreenHeight() { return screen_height; }
-        //--------------------------------------
-
-        //--Сеттер для изменения ширины экрана--
-        public static void SetScreenWidth(int new_screen_width) { screen_width = new_screen_width; }
-        //--------------------------------------
-
-        //--Сеттер для изменения высоты экрана--
-        public static void SetScreenHeight(int new_screen_height) { screen_height = new_screen_height; }
-        //--------------------------------------
-
         //--Метод для установки размеров экрана--
         public static void SetScreenSize(int w, int h)
         {
-            screen_width = w;
-            screen_height = h;
+            _screenWidth = w;
+            _screenHeight = h;
         }
         //---------------------------------------
 

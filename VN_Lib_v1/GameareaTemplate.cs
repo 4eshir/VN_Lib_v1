@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace VN_Lib_v1
@@ -21,39 +22,45 @@ namespace VN_Lib_v1
          * конфигурации текущего окна
          * --------------------------
          */
-        private WindowConfig config;
+        private WindowConfig _config;
+
+        //--Свойства--
+        public WindowConfig config
+        {
+            set { _config = value; }
+            get { return _config; }
+        }
+        //------------
 
         /*
          * -----------------------------
          * Переменная глобального layout
          * -----------------------------
          */
-        private Grid _base_layout;
+        private Grid _baseLayout;
+
+        //--Свойства--
+        public Grid baseLayout
+        {
+            set { _baseLayout = value; }
+            get { return _baseLayout; }
+        }
+        //------------
 
         //----------------------------------------------------
-
-        //----------------------------------------------------
-
-        //--Геттер для глобального layout--
-        public Grid GetBaseLayout() { return _base_layout; }
-        //---------------------------------
-
-        //--Сеттер для глобального layout--
-        public void SetBaseLayout(Grid new_layout) { _base_layout = new_layout; }
-        //---------------------------------
 
         //--Конструкторы класса--
 
         public GameareaTemplate()
         {
-            _base_layout = new Grid();
-            _base_layout.Name = "MainLayout";
+            _baseLayout = new Grid();
+            _baseLayout.Name = "MainLayout";
         }
 
         public GameareaTemplate(Grid new_layout)
         {
-            _base_layout = new_layout;
-            _base_layout.Name = new_layout.Name;
+            _baseLayout = new_layout;
+            _baseLayout.Name = new_layout.Name;
         }
 
         //----------------------
@@ -64,8 +71,8 @@ namespace VN_Lib_v1
          */
         public void SetLayoutSize()
         {
-            _base_layout.Height = GameConfig.GetScreenHeight();
-            _base_layout.Width = GameConfig.GetScreenWidth();
+            _baseLayout.Height = GameConfig.screenHeight;
+            _baseLayout.Width = GameConfig.screenWidth;
         }
 
         /*
@@ -75,10 +82,10 @@ namespace VN_Lib_v1
         public virtual MainWindow CreateTemplate()
         {
             MainWindow window = new MainWindow();
-            window.Height = GameConfig.GetScreenHeight();
-            window.Width = GameConfig.GetScreenWidth();
+            window.Height = GameConfig.screenHeight;
+            window.Width = GameConfig.screenWidth;
             SetLayoutSize();
-            window.Content = GetBaseLayout();
+            window.Content = _baseLayout;
             return window;
         }
 

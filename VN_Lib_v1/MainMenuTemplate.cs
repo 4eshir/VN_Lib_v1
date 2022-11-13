@@ -18,7 +18,15 @@ namespace VN_Lib_v1
          * конфигурации текущего окна
          * --------------------------
          */
-        private WindowConfig config;
+        private WindowConfig _config;
+
+        //--Свойства--
+        public WindowConfig config
+        {
+            set { _config = value; }
+            get { return _config; }
+        }
+        //------------
 
         //------------------------------------------------
 
@@ -53,13 +61,13 @@ namespace VN_Lib_v1
 
             //--Задаем фон общему layout--
             BitmapImage back = new BitmapImage
-                (new Uri(config.GetBackgroundPath(), UriKind.Relative));
+                (new Uri(config.backgroundPath, UriKind.Relative));
             ImageBrush backBrush = new ImageBrush(back);
-            GetBaseLayout().Background = backBrush;
-            elements.Add(GetBaseLayout());
+            config.mainGrid.Background = backBrush;
+            elements.Add(config.mainGrid);
             //----------------------------
 
-            config.SetElements(elements);
+            config.elements = elements;
 
 
             MainWindow window = new MainWindow(config, 1);

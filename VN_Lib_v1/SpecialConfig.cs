@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Xml.Linq;
 
 namespace VN_Lib_v1
 {
@@ -11,25 +12,21 @@ namespace VN_Lib_v1
     {
         //------------------------------
 
-        //--Конфигурация главного меню
-
         /*
-         * Тип меню
-         * 0 - вертикальное
-         * 1 - горизонтальное
+         * Конфигурации главного меню
          */
-        private int _type;
+        private SpecialConfigMenu _menuConfig;
 
-        /*
-         * Список элементов меню
-         */
-        private List<Button> _menu_items;
+        //--Свойства--
+        public SpecialConfigMenu menuConfig
+        {
+            set { _menuConfig = value; }
+            get { return _menuConfig; }
+        }
+        //------------
 
-        /*
-         * Стиль элементов меню
-         */
+        //------------------------------
 
-        //----------------------------
 
         //------------------------------
     }

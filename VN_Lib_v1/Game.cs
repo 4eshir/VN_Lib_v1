@@ -24,6 +24,14 @@ namespace VN_Lib_v1
          */
         private uint _state;
 
+        //--Свойства--
+        public uint state
+        {
+            set { _state = value; }
+            get { return _state; }
+        }
+        //------------
+
         /*
          * --------------------------------------------------------
          * Переменная состояния элементов контроля на данный момент
@@ -34,37 +42,35 @@ namespace VN_Lib_v1
          */
         private uint _control;
 
+        //--Свойства--
+        public uint control
+        {
+            set { _control = value; }
+            get { return _control; }
+        }
+        //------------
+
 
         /*
          * -----------------
          * Главное окно игры
          * -----------------
          */
-        private MainWindow window;
+        private MainWindow _window;
+
+        //--Свойства--
+        public MainWindow window
+        {
+            set { _window = value; }
+            get { return _window; }
+        }
+        //------------
 
         //------------------------------------------------------------------
 
 
         //------------------------------------------------------------------
 
-        //--Геттер для получения состояния игры--
-        public uint GetState() { return _state; }
-        //---------------------------------------
-
-        //--Сеттер для установки состояния игры--
-        public void SetState(uint new_state) { _state = new_state; }
-        //---------------------------------------
-
-        //--Геттер для получения состояния элементов контроля--
-        public uint GetControl() { return _control; }
-        //-----------------------------------------------------
-
-        //--Сеттер для установки состояния элементов контроля--
-        public void SetControl(uint new_control) { _control = new_control; }
-        //-----------------------------------------------------
-
-        //--Геттер для получения главного окна игры--
-        public MainWindow GetMainWindow() { return window; }
         //-------------------------------------------
 
         //--Конструкторы класса--
@@ -73,7 +79,7 @@ namespace VN_Lib_v1
         {
             _state = 1;
             _control = 0;
-            window = new MainWindow();
+            _window = new MainWindow();
         }
 
         //-----------------------
@@ -90,8 +96,8 @@ namespace VN_Lib_v1
         public void StartGame()
         {
             GameareaTemplate template = new GameareaTemplate();
-            window = template.CreateTemplate();
-            window.Show();
+            _window = template.CreateTemplate();
+            _window.Show();
         }
 
         //------------------------------------------------------------------

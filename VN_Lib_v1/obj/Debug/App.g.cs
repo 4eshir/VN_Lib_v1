@@ -30,7 +30,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
 using VN_Lib_v1;
-using System.Collections.Generic;
 
 
 namespace VN_Lib_v1 {
@@ -64,26 +63,6 @@ namespace VN_Lib_v1 {
         public static void Main() {
             VN_Lib_v1.App app = new VN_Lib_v1.App();
             app.InitializeComponent();
-
-            Game g = new Game();
-
-            int base_height = 1080;
-            int base_width = 1920;
-
-            GameConfig.SetScreenHeight(base_height);
-            GameConfig.SetScreenWidth(base_width);
-
-            List<Object> e = new List<Object>();
-            Label l = new Label();
-            //l.TextInput = "LOL";
-            e.Add(l);
-
-            WindowConfig win_config = new WindowConfig("back1.jpg", base_height, base_width, e);
-
-            MainMenuTemplate template = new MainMenuTemplate(win_config); 
-
-            MainWindow window = template.CreateTemplate();
-            window.Show();
             app.Run();
         }
     }

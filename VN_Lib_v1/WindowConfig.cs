@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace VN_Lib_v1
 {
@@ -11,32 +12,85 @@ namespace VN_Lib_v1
         //------------------------------------------------
 
         /*
+         * Переменная, хранящая основной слой
+         * приложения типа Grid
+         */
+        private Grid _mainGrid;
+
+        //--Свойства--
+        public Grid mainGrid
+        {
+            set { _mainGrid = value; }
+            get { return _mainGrid; }
+        }
+        //------------
+
+        /*
          * Переменная, хранящая путь к фоновому
          * изображению главного меню приложения
          */
-        private String _background_path;
+        private string _backgroundPath;
+
+        //--Свойства--
+        public string backgroundPath
+        {
+            set { _backgroundPath = value; }
+            get { return _backgroundPath; }
+        }
+        //------------
 
         /*
          * Текущая высота окна приложения
          */
-        private int _current_screen_height;
+        private int _currentScreenHeight;
 
+        //--Свойства--
+        public int currentScreenHeight
+        {
+            set { _currentScreenHeight = value; }
+            get { return _currentScreenHeight; }
+        }
+        //------------
 
         /*
          * Текущая ширина окна приложения
          */
-        private int _current_screen_width;
+        private int _currentScreenWidth;
+
+        //--Свойства--
+        public int currentScreenWidth
+        {
+            set { _currentScreenWidth = value; }
+            get { return _currentScreenWidth; }
+        }
+        //------------
 
         /*
          * Список элементов, расположенных в окне
          */
         private List<Object> _elements;
 
+        //--Свойства--
+        public List<Object> elements
+        {
+            set { _elements = value; }
+            get { return _elements; }
+        }
+        //------------
+
 
         /*
          * Специальные настройки окна
          */
-        private SpecialConfig _special_config;
+        private SpecialConfig _specialConfig;
+
+        //--Свойства--
+        public SpecialConfig specialConfig
+        {
+            set { _specialConfig = value; }
+            get { return _specialConfig; }
+        }
+        //------------
 
         //------------------------------------------------
 
@@ -46,72 +100,37 @@ namespace VN_Lib_v1
 
         public WindowConfig()
         {
-            _current_screen_height = Constants.DEFAULT_SCREEN_HEIGHT;
-            _current_screen_width = Constants.DEFAULT_SCREEN_WIDTH;
-            _background_path = "";
+            _currentScreenHeight = Constants.DEFAULT_SCREEN_HEIGHT;
+            _currentScreenWidth = Constants.DEFAULT_SCREEN_WIDTH;
+            _backgroundPath = "";
             _elements = new List<Object>();
-            _special_config = new SpecialConfig();
+            _specialConfig = new SpecialConfig();
+            _mainGrid = new Grid();
         }
 
         public WindowConfig(WindowConfig config)
         {
-            _current_screen_height = config.GetCurrentHeight();
-            _current_screen_width = config.GetCurrentWidth();
-            _background_path = config.GetBackgroundPath();
-            _elements = config.GetElements();
-            _special_config = config.GetSpecialConfig();
+            _currentScreenHeight = config.currentScreenHeight;
+            _currentScreenWidth = config.currentScreenWidth;
+            _backgroundPath = config.backgroundPath;
+            _elements = config.elements;
+            _specialConfig = config.specialConfig;
+            _mainGrid = config.mainGrid;
         }
 
-        public WindowConfig(String new_path, int new_height, int new_width, List<Object> new_elements, SpecialConfig new_config)
+        public WindowConfig(String newPath, int newHeight, int newWidth, List<Object> newElements, SpecialConfig newConfig, Grid newGrid)
         {
-            _current_screen_height = new_height;
-            _current_screen_width = new_width;
-            _background_path = new_path;
-            _elements = new_elements;
-            _special_config = new_config;
+            _currentScreenHeight = newHeight;
+            _currentScreenWidth = newHeight;
+            _backgroundPath = newPath;
+            _elements = newElements;
+            _specialConfig = newConfig;
+            _mainGrid = newGrid;
         }
 
         //-----------------------
 
-        //--Геттер для пути к фоновому изображению--
-        public String GetBackgroundPath() { return _background_path; }
-        //------------------------------------------
-
-        //--Сеттер для пути к фоновому изображению--
-        public void SetBackgroundPath(String new_path) { _background_path = new_path; }
-        //------------------------------------------
-
-        //--Геттер для получения текущей высоты окна приложения--
-        public int GetCurrentHeight() { return _current_screen_height; }
-        //-------------------------------------------------------
-
-        //--Сеттер для изменения текущей высоты окна приложения--
-        public void SetCurrentHeight(int new_height) { _current_screen_height = new_height; }
-        //-------------------------------------------------------
-
-        //--Геттер для получения текущей ширины окна приложения--
-        public int GetCurrentWidth() { return _current_screen_width; }
-        //-------------------------------------------------------
-
-        //--Сеттер для изменения текущей ширины окна приложения--
-        public void SetCurrentWidth(int new_width) { _current_screen_width = new_width; }
-        //-------------------------------------------------------
-
-        //--Геттер для получения элементов контроля в окне--
-        public List<Object> GetElements() { return _elements; }
-        //--------------------------------------------------
-
-        //--Сеттер для изменения элементов контроля в окне--
-        public void SetElements(List<Object> new_elements) { _elements = new_elements; }
-        //--------------------------------------------------
-
-        //--Геттер для получения специальных конфигураций--
-        public SpecialConfig GetSpecialConfig() { return _special_config; }
-        //-------------------------------------------------
-
-        //--Сеттер для изменения специальных конфигураций--
-        public void SetSpecialConfig(SpecialConfig new_config) { _special_config = new_config; }
-        //-------------------------------------------------
+        
 
         //------------------------------------------------
     }

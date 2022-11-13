@@ -23,5 +23,36 @@ namespace VN_Lib_v1
         {
             InitializeComponent();
         }
+
+        public void StartGame()
+        {
+            SpecialConfigMenu scm = new SpecialConfigMenu();
+            scm.row = 3;
+            scm.col = 3;
+            List<Button> buttons = new List<Button>();
+            Button b = new Button();
+            b.Content = "Начать игру";
+            buttons.Add(b);
+            b = new Button();
+            b.Content = "Опции";
+            buttons.Add(b);
+            b = new Button();
+            b.Content = "Выйти";
+            buttons.Add(b);
+            scm.menuItems = buttons;
+            scm.menuType = 0;
+
+            SpecialConfig sc = new SpecialConfig();
+
+
+            WindowConfig c = new WindowConfig();
+            MainWindow w = new MainWindow();
+            Game g = new Game();
+            
+            
+            
+
+
+        }
     }
 }
