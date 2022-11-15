@@ -22,6 +22,7 @@ namespace VN_Lib_v1
         public MainCore()
         {
             InitializeComponent();
+            StartGame();
         }
 
         public void StartGame()
@@ -42,15 +43,22 @@ namespace VN_Lib_v1
             scm.menuItems = buttons;
             scm.menuType = 0;
 
+
             SpecialConfig sc = new SpecialConfig();
+            sc.menuConfig = scm;
 
 
             WindowConfig c = new WindowConfig();
-            MainWindow w = new MainWindow();
-            Game g = new Game();
-            
-            
-            
+            c.specialConfig = sc;
+            c.backgroundPath = "images\\back.jpg";
+            c.currentScreenWidth = 1920;
+            c.currentScreenHeight = 1080;
+
+            MainWindow w = new MainWindow(c, 1);
+            w.Height = 1080;
+            w.Width = 1920;
+            w.Show();
+
 
 
         }

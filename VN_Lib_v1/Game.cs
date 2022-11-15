@@ -82,6 +82,13 @@ namespace VN_Lib_v1
             _window = new MainWindow();
         }
 
+        public Game(uint newState, uint newControl, MainWindow newWindow)
+        {
+            _state = newState;
+            _control = newControl;
+            _window = newWindow;
+        }
+
         //-----------------------
 
         //--Функция старта игры--

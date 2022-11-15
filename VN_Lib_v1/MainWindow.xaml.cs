@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace VN_Lib_v1
 {
@@ -27,7 +28,13 @@ namespace VN_Lib_v1
          * Переменная конфигурации окна
          * ----------------------------
          */
-        private WindowConfig config;
+        private WindowConfig _config;
+
+        public WindowConfig config
+        {
+            set { _config = value; }
+            get { return _config; }
+        }
 
         //---------------------------------
 
@@ -35,7 +42,7 @@ namespace VN_Lib_v1
         public MainWindow()
         {
             InitializeComponent();
-            config = new WindowConfig();
+            _config = new WindowConfig();
         }
 
         /*
@@ -51,7 +58,7 @@ namespace VN_Lib_v1
         public MainWindow(WindowConfig c, int type)
         {
             InitializeComponent();
-            config = c;
+            _config = c;
             switch (type)
             {
                 case 1:
@@ -81,13 +88,16 @@ namespace VN_Lib_v1
             this.Height = GameConfig.screenHeight;
             this.Width = GameConfig.screenWidth;
 
-            Grid main_grid = (Grid)config.elements[0];
-            CreateGrid(main_grid);
+            BitmapImage back = new BitmapImage
+                (new Uri("images\\back.jpg", UriKind.Relative));
+            _config.mainGrid.Background = new ImageBrush(back);
+
+            CreateGrid(_config.mainGrid);
 
             //main_grid.Children.Add((WrapPanel)config.GetElements()[1]);
 
-            this.Content = main_grid;
-            this.RegisterName("MainLayout", main_grid);
+            this.Content = _config.mainGrid;
+            this.RegisterName("MainLayout", _config.mainGrid);
         }
 
         /*
