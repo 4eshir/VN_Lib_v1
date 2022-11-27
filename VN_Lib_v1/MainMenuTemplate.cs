@@ -67,7 +67,6 @@ namespace VN_Lib_v1
             elements.Add(config.mainGrid);
             //----------------------------
 
-            config.elements = elements;
 
 
             MainWindow window = new MainWindow(config, 1);

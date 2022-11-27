@@ -28,20 +28,29 @@ namespace VN_Lib_v1
         public void StartGame()
         {
             SpecialConfigMenu scm = new SpecialConfigMenu();
-            scm.row = 3;
-            scm.col = 3;
+            
             List<Button> buttons = new List<Button>();
             Button b = new Button();
             b.Content = "Начать игру";
+            b.Height = 100;
+            b.Width = 300;
+            b.Margin = new Thickness(10);
             buttons.Add(b);
             b = new Button();
             b.Content = "Опции";
+            b.Height = 100;
+            b.Width = 300;
+            b.Margin = new Thickness(10);
             buttons.Add(b);
             b = new Button();
             b.Content = "Выйти";
+            b.Height = 100;
+            b.Width = 300;
+            b.Margin = new Thickness(10);
             buttons.Add(b);
             scm.menuItems = buttons;
             scm.menuType = 0;
+
 
 
             SpecialConfig sc = new SpecialConfig();
@@ -51,12 +60,12 @@ namespace VN_Lib_v1
             WindowConfig c = new WindowConfig();
             c.specialConfig = sc;
             c.backgroundPath = "images\\back.jpg";
-            c.currentScreenWidth = 1920;
-            c.currentScreenHeight = 1080;
+            c.screenWidth = 1920;
+            c.screenHeight = 1080;
+            c.row = 3;
+            c.col = 3;
 
             MainWindow w = new MainWindow(c, 1);
-            w.Height = 1080;
-            w.Width = 1920;
             w.Show();
 
 

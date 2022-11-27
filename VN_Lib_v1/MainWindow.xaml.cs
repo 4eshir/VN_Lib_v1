@@ -85,16 +85,16 @@ namespace VN_Lib_v1
          */
         public void GenerateMainMenu()
         {
-            this.Height = GameConfig.screenHeight;
-            this.Width = GameConfig.screenWidth;
+            this.Height = config.screenHeight;
+            this.Width = config.screenWidth;
 
             BitmapImage back = new BitmapImage
-                (new Uri("images\\back.jpg", UriKind.Relative));
+                (new Uri(config.backgroundPath, UriKind.Relative));
             _config.mainGrid.Background = new ImageBrush(back);
 
             CreateGrid(_config.mainGrid);
+            CreateMenuButton(_config.mainGrid);
 
-            //main_grid.Children.Add((WrapPanel)config.GetElements()[1]);
 
             this.Content = _config.mainGrid;
             this.RegisterName("MainLayout", _config.mainGrid);
@@ -108,18 +108,31 @@ namespace VN_Lib_v1
         {
             RowDefinitionCollection rd = g.RowDefinitions;
             ColumnDefinitionCollection cd = g.ColumnDefinitions;
-            for (int i = 0; i != config.specialConfig.menuConfig.row; i++)
+            for (int i = 0; i != config.row; i++)
             {
                 rd.Add(new RowDefinition());
-                for (int j = 0; j < config.specialConfig.menuConfig.col; j++)
-                {
-                    cd.Add(new ColumnDefinition());
-                }
-
-                Button b = new Button();
-                b.Name = "Button" + i;
-
             }
+
+            for (int j = 0; j < config.col; j++)
+            {
+                cd.Add(new ColumnDefinition());
+            }
+        }
+
+        /*
+         * Создание главного меню (кнопки)
+         */
+        private void CreateMenuButton(Grid g)
+        {
+            StackPanel panel = new StackPanel();
+            foreach (Object btn in config.specialConfig.menuConfig.menuItems)
+            {
+                Button b = (Button)btn;
+                panel.Children.Add(b);
+            }
+            Grid.SetRow(panel, 1);
+            Grid.SetColumn(panel, 1);
+            g.Children.Add(panel);
         }
 
         public void GenerateGameplayActive()

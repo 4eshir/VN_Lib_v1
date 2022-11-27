@@ -50,6 +50,16 @@ namespace VN_Lib_v1
         }
         //------------
 
+        private GameConfig _gameConfig;
+
+        //--Свойства--
+        public GameConfig gameConfig
+        {
+            set { _gameConfig = value; }
+            get { return _gameConfig; }
+        }
+        //------------
+
 
         /*
          * -----------------

@@ -10,7 +10,7 @@ namespace VN_Lib_v1
     /*
      * Класс глобальных настроек игры
      */
-    public static class GameConfig
+    public class GameConfig
     {
         //------------------------------------------
 
@@ -19,10 +19,10 @@ namespace VN_Lib_v1
          * Ширина окна игры
          * ----------------
          */
-        private static int _screenWidth;
+        private int _screenWidth;
 
         //--Свойства--
-        public static int screenWidth
+        public int screenWidth
         {
             set { _screenWidth = value; }
             get { return _screenWidth; }
@@ -34,10 +34,10 @@ namespace VN_Lib_v1
          * Высота окна игры
          * ----------------
          */
-        private static int _screenHeight;
+        private int _screenHeight;
 
         //--Свойства--
-        public static int screenHeight
+        public int screenHeight
         {
             set { _screenHeight = value; }
             get { return _screenHeight; }
@@ -66,7 +66,7 @@ namespace VN_Lib_v1
         //-----------------------*/
 
         //--Метод для установки размеров экрана--
-        public static void SetScreenSize(int w, int h)
+        public void SetScreenSize(int w, int h)
         {
             _screenWidth = w;
             _screenHeight = h;

@@ -26,6 +26,43 @@ namespace VN_Lib_v1
         //------------
 
         /*
+         * Тип позиционирования
+         * 0 - абсолютное позиционирование (пустой Grid)
+         * 1 - относительное позиционирование (конкретная ячейка Grid)
+         */
+        private uint _positioiningType;
+
+        //--Свойства--
+        public uint positioiningType
+        {
+            set { _positioiningType = value; }
+            get { return _positioiningType; }
+        }
+        //------------
+
+        /*
+         * Размерность Grid
+         * _row - количество строк
+         * _col - количество столбцов
+         */
+        private uint _row;
+        private uint _col;
+
+        //--Свойства--
+        public uint row
+        {
+            set { _row = value; }
+            get { return _row; }
+        }
+
+        public uint col
+        {
+            set { _col = value; }
+            get { return _col; }
+        }
+        //------------
+
+        /*
          * Переменная, хранящая путь к фоновому
          * изображению главного меню приложения
          */
@@ -42,39 +79,39 @@ namespace VN_Lib_v1
         /*
          * Текущая высота окна приложения
          */
-        private int _currentScreenHeight;
+        private uint _screenHeight;
 
         //--Свойства--
-        public int currentScreenHeight
+        public uint screenHeight
         {
-            set { _currentScreenHeight = value; }
-            get { return _currentScreenHeight; }
+            set { _screenHeight = value; }
+            get { return _screenHeight; }
         }
         //------------
 
         /*
          * Текущая ширина окна приложения
          */
-        private int _currentScreenWidth;
+        private uint _screenWidth;
 
         //--Свойства--
-        public int currentScreenWidth
+        public uint screenWidth
         {
-            set { _currentScreenWidth = value; }
-            get { return _currentScreenWidth; }
+            set { _screenWidth = value; }
+            get { return _screenWidth; }
         }
         //------------
 
         /*
-         * Список элементов, расположенных в окне
+         * Блокировка ресайза окна
          */
-        private List<Object> _elements;
+        private uint _resizeState;
 
         //--Свойства--
-        public List<Object> elements
+        public uint resizeState
         {
-            set { _elements = value; }
-            get { return _elements; }
+            set { _resizeState = value; }
+            get { return _resizeState; }
         }
         //------------
 
@@ -100,30 +137,27 @@ namespace VN_Lib_v1
 
         public WindowConfig()
         {
-            _currentScreenHeight = Constants.DEFAULT_SCREEN_HEIGHT;
-            _currentScreenWidth = Constants.DEFAULT_SCREEN_WIDTH;
+            _screenHeight = Constants.DEFAULT_SCREEN_HEIGHT;
+            _screenWidth = Constants.DEFAULT_SCREEN_WIDTH;
             _backgroundPath = "";
-            _elements = new List<Object>();
             _specialConfig = new SpecialConfig();
             _mainGrid = new Grid();
         }
 
         public WindowConfig(WindowConfig config)
         {
-            _currentScreenHeight = config.currentScreenHeight;
-            _currentScreenWidth = config.currentScreenWidth;
+            _screenHeight = config.screenHeight;
+            _screenWidth = config.screenWidth;
             _backgroundPath = config.backgroundPath;
-            _elements = config.elements;
             _specialConfig = config.specialConfig;
             _mainGrid = config.mainGrid;
         }
 
-        public WindowConfig(String newPath, int newHeight, int newWidth, List<Object> newElements, SpecialConfig newConfig, Grid newGrid)
+        public WindowConfig(String newPath, uint newHeight, uint newWidth, SpecialConfig newConfig, Grid newGrid)
         {
-            _currentScreenHeight = newHeight;
-            _currentScreenWidth = newHeight;
+            _screenHeight = newHeight;
+            _screenWidth = newHeight;
             _backgroundPath = newPath;
-            _elements = newElements;
             _specialConfig = newConfig;
             _mainGrid = newGrid;
         }

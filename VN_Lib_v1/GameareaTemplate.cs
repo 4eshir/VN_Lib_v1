@@ -32,20 +32,6 @@ namespace VN_Lib_v1
         }
         //------------
 
-        /*
-         * -----------------------------
-         * Переменная глобального layout
-         * -----------------------------
-         */
-        private Grid _baseLayout;
-
-        //--Свойства--
-        public Grid baseLayout
-        {
-            set { _baseLayout = value; }
-            get { return _baseLayout; }
-        }
-        //------------
 
         //----------------------------------------------------
 
@@ -53,14 +39,12 @@ namespace VN_Lib_v1
 
         public GameareaTemplate()
         {
-            _baseLayout = new Grid();
-            _baseLayout.Name = "MainLayout";
+
         }
 
         public GameareaTemplate(Grid new_layout)
         {
-            _baseLayout = new_layout;
-            _baseLayout.Name = new_layout.Name;
+            
         }
 
         //----------------------
@@ -71,8 +55,7 @@ namespace VN_Lib_v1
          */
         public void SetLayoutSize()
         {
-            _baseLayout.Height = GameConfig.screenHeight;
-            _baseLayout.Width = GameConfig.screenWidth;
+            
         }
 
         /*
@@ -81,12 +64,7 @@ namespace VN_Lib_v1
          */
         public virtual MainWindow CreateTemplate()
         {
-            MainWindow window = new MainWindow();
-            window.Height = GameConfig.screenHeight;
-            window.Width = GameConfig.screenWidth;
-            SetLayoutSize();
-            window.Content = _baseLayout;
-            return window;
+            return new MainWindow();
         }
 
         //----------------------------------------------------
