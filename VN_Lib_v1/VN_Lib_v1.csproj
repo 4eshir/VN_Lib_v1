@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="KeypressHandler.cs" />
+    <Compile Include="Pair.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="SpecialConfig.cs" />
     <Compile Include="SpecialConfigMenu.cs" />
     <Compile Include="WindowConfig.cs" />

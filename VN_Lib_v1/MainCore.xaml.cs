@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -28,28 +29,27 @@ namespace VN_Lib_v1
         public void StartGame()
         {
             SpecialConfigMenu scm = new SpecialConfigMenu();
+            scm.leftRightMargin = 200;
+            scm.upDownMargin = 10;
             
             List<Button> buttons = new List<Button>();
+            List<uint> heights = new List<uint>();
+            heights.Add(50);
             Button b = new Button();
             b.Content = "Начать игру";
-            b.Height = 100;
-            b.Width = 300;
-            b.Margin = new Thickness(10);
             buttons.Add(b);
             b = new Button();
             b.Content = "Опции";
-            b.Height = 100;
-            b.Width = 300;
-            b.Margin = new Thickness(10);
             buttons.Add(b);
             b = new Button();
             b.Content = "Выйти";
-            b.Height = 100;
-            b.Width = 300;
-            b.Margin = new Thickness(10);
             buttons.Add(b);
             scm.menuItems = buttons;
-            scm.menuType = 0;
+            scm.buttonHeights = heights;
+            scm.menuType = Constants.VERTICAL_MENU;
+            scm.SetButtonHeights();
+            scm.SetButtonMargins();
+            scm.menuPosition = new Position(Constants.GRID_POSITION, 1, 2);
 
 
 
@@ -62,10 +62,13 @@ namespace VN_Lib_v1
             c.backgroundPath = "images\\back.jpg";
             c.screenWidth = 1920;
             c.screenHeight = 1080;
+            c.colWidth = new List<uint>() { 33 };
+            c.rowHeight = new List<uint>() { 33 };
             c.row = 3;
             c.col = 3;
 
-            MainWindow w = new MainWindow(c, 1);
+            MainMenuTemplate mainMenuTemplate = new MainMenuTemplate(c);
+            MainWindow w = mainMenuTemplate.CreateTemplate();
             w.Show();
 
 

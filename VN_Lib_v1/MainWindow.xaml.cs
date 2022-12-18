@@ -59,7 +59,7 @@ namespace VN_Lib_v1
         {
             InitializeComponent();
             _config = c;
-            switch (type)
+            /*switch (type)
             {
                 case 1:
                     GenerateMainMenu();
@@ -73,67 +73,14 @@ namespace VN_Lib_v1
                 default:
                     GenerateDefaultWindow();
                     break;
-            }
+            }*/
 
         }
         //-----------------------
 
-        /*
-         * config.elements - все объекты в окне
-         * [0] - основной layout (Grid)
-         * [1] - меню (WrapPanel)
-         */
-        public void GenerateMainMenu()
-        {
-            this.Height = config.screenHeight;
-            this.Width = config.screenWidth;
-
-            BitmapImage back = new BitmapImage
-                (new Uri(config.backgroundPath, UriKind.Relative));
-            _config.mainGrid.Background = new ImageBrush(back);
-
-            CreateGrid(_config.mainGrid);
-            CreateMenuButton(_config.mainGrid);
+        
 
 
-            this.Content = _config.mainGrid;
-            this.RegisterName("MainLayout", _config.mainGrid);
-        }
-
-        /*
-         * Создание сетки Grid
-         * На основе данных из WindowConfig.SpecialConfig.SpecialConfigMenu
-         */
-        private void CreateGrid(Grid g)
-        {
-            RowDefinitionCollection rd = g.RowDefinitions;
-            ColumnDefinitionCollection cd = g.ColumnDefinitions;
-            for (int i = 0; i != config.row; i++)
-            {
-                rd.Add(new RowDefinition());
-            }
-
-            for (int j = 0; j < config.col; j++)
-            {
-                cd.Add(new ColumnDefinition());
-            }
-        }
-
-        /*
-         * Создание главного меню (кнопки)
-         */
-        private void CreateMenuButton(Grid g)
-        {
-            StackPanel panel = new StackPanel();
-            foreach (Object btn in config.specialConfig.menuConfig.menuItems)
-            {
-                Button b = (Button)btn;
-                panel.Children.Add(b);
-            }
-            Grid.SetRow(panel, 1);
-            Grid.SetColumn(panel, 1);
-            g.Children.Add(panel);
-        }
 
         public void GenerateGameplayActive()
         {

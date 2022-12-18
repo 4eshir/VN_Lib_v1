@@ -63,6 +63,28 @@ namespace VN_Lib_v1
         //------------
 
         /*
+         * Высота и ширина строк и столбцов Grid
+         * _rowHeight - высота строк (в процентах)
+         * _colWidth - ширина столбцов (в процентах)
+         */
+        private List<uint> _rowHeight;
+        private List<uint> _colWidth;
+
+        //--Свойства--
+        public List<uint> rowHeight
+        {
+            set { _rowHeight = value; }
+            get { return _rowHeight; }
+        }
+
+        public List<uint> colWidth
+        {
+            set { _colWidth = value; }
+            get { return _colWidth; }
+        }
+        //------------
+
+        /*
          * Переменная, хранящая путь к фоновому
          * изображению главного меню приложения
          */
@@ -142,6 +164,10 @@ namespace VN_Lib_v1
             _backgroundPath = "";
             _specialConfig = new SpecialConfig();
             _mainGrid = new Grid();
+            _row = 0;
+            _col = 0;
+            _rowHeight = new List<uint>();
+            _colWidth = new List<uint>();
         }
 
         public WindowConfig(WindowConfig config)
@@ -151,15 +177,23 @@ namespace VN_Lib_v1
             _backgroundPath = config.backgroundPath;
             _specialConfig = config.specialConfig;
             _mainGrid = config.mainGrid;
+            _row = config.row;
+            _col = config.col;
+            _rowHeight = config.rowHeight;
+            _colWidth = config.colWidth;
         }
 
-        public WindowConfig(String newPath, uint newHeight, uint newWidth, SpecialConfig newConfig, Grid newGrid)
+        public WindowConfig(String newPath, uint newHeight, uint newWidth, SpecialConfig newConfig, Grid newGrid, uint newRow, uint newCol, List<uint> newRowHeight, List<uint> newColWidth)
         {
             _screenHeight = newHeight;
-            _screenWidth = newHeight;
+            _screenWidth = newWidth;
             _backgroundPath = newPath;
             _specialConfig = newConfig;
             _mainGrid = newGrid;
+            _row = newRow;
+            _col = newCol;
+            _rowHeight = newRowHeight;
+            _colWidth = newColWidth;
         }
 
         //-----------------------
