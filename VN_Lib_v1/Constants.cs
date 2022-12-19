@@ -28,5 +28,12 @@ namespace VN_Lib_v1
         public const int FROM_PASSIVE_GAMEPLAY = 1;
         public const int FROM_MAIN_MENU = 2;
         //----------------------------------------
+
+        //--Константы для функций главного меню--
+        public const uint DEFAULT_BUTTON = 0;
+        public const uint START_NEW_GAME = 1;
+        public const uint OPTIONS = 2;
+        public const uint QUIT = 3;
+        //---------------------------------------
     }
 }

@@ -46,10 +46,10 @@ namespace VN_Lib_v1
         /*
          * Список элементов меню
          */
-        private List<Button> _menuItems;
+        private List<MenuButton> _menuItems;
 
         //--Свойства--
-        public List<Button> menuItems
+        public List<MenuButton> menuItems
         {
             set { _menuItems = value; }
             get { return _menuItems; }
@@ -107,7 +107,7 @@ namespace VN_Lib_v1
         public SpecialConfigMenu()
         {
             _menuType = 0;
-            _menuItems = new List<Button>();
+            _menuItems = new List<MenuButton>();
         }
 
         public SpecialConfigMenu(SpecialConfigMenu new_config)
@@ -121,7 +121,7 @@ namespace VN_Lib_v1
             SetButtonMargins();
         }
 
-        public SpecialConfigMenu(uint menuType, List<Button> menuItems, List<uint> buttonHeights, Position newPosition, uint newLeftRightMargin, uint newUpDownMargin)
+        public SpecialConfigMenu(uint menuType, List<MenuButton> menuItems, List<uint> buttonHeights, Position newPosition, uint newLeftRightMargin, uint newUpDownMargin)
         {
             _menuType = menuType;
             _menuItems = menuItems;
@@ -145,13 +145,13 @@ namespace VN_Lib_v1
                     return false;
 
                 for (int i = 0; i < _menuItems.Count; i++)
-                    _menuItems[i].Height = _menuButtonHeihgts[i];
+                    _menuItems[i].button.Height = _menuButtonHeihgts[i];
 
                 return true;
             }
 
             for (int i = 0; i < _menuItems.Count; i++)
-                _menuItems[i].Height = _menuButtonHeihgts[0];
+                _menuItems[i].button.Height = _menuButtonHeihgts[0];
 
             return true;
         }
@@ -162,8 +162,8 @@ namespace VN_Lib_v1
         {
             if (_menuItems.Count < 1) return false;
 
-            foreach (Button btn in _menuItems)
-                btn.Margin = new Thickness(_leftRightMargin, _upDownMargin, _leftRightMargin, _upDownMargin);
+            foreach (MenuButton btn in _menuItems)
+                btn.button.Margin = new Thickness(_leftRightMargin, _upDownMargin, _leftRightMargin, _upDownMargin);
 
             return true;
         }

@@ -14,21 +14,6 @@ namespace VN_Lib_v1
     {
         //------------------------------------------------
 
-        /*
-         * --------------------------
-         * Переменная, хранящая
-         * конфигурации текущего окна
-         * --------------------------
-         */
-        private WindowConfig _config;
-
-        //--Свойства--
-        public WindowConfig config
-        {
-            set { _config = value; }
-            get { return _config; }
-        }
-        //------------
 
         //------------------------------------------------
 
@@ -71,19 +56,19 @@ namespace VN_Lib_v1
             //--Задаем фон общему layout--
             BitmapImage back = new BitmapImage
                 (new Uri(config.backgroundPath, UriKind.Relative));
-            _config.mainGrid.Background = new ImageBrush(back);
+            config.mainGrid.Background = new ImageBrush(back);
             //----------------------------
 
             window.Height = config.screenHeight;
             window.Width = config.screenWidth;
 
 
-            CreateGrid(_config.mainGrid);
-            CreateMenuButton(_config.mainGrid);
+            CreateGrid(config.mainGrid);
+            CreateMenuButton(config.mainGrid);
 
 
-            window.Content = _config.mainGrid;
-            window.RegisterName("MainLayout", _config.mainGrid);            
+            window.Content = config.mainGrid;
+            window.RegisterName("MainLayout", config.mainGrid);            
 
             return window;
         }
@@ -99,6 +84,9 @@ namespace VN_Lib_v1
          */
         private void CreateGrid(Grid g)
         {
+            g.RowDefinitions.Clear();
+            g.ColumnDefinitions.Clear();
+
             RowDefinitionCollection rd = g.RowDefinitions;
             ColumnDefinitionCollection cd = g.ColumnDefinitions;
 
@@ -156,13 +144,46 @@ namespace VN_Lib_v1
             if (config.specialConfig.menuConfig.menuType == 1) panel.Orientation = Orientation.Horizontal;
             foreach (Object btn in config.specialConfig.menuConfig.menuItems)
             {
-                Button b = (Button)btn;
-                panel.Children.Add(b);
+                MenuButton b = (MenuButton)btn;
+                BindingMenuButtonHandlers(b.button, b.buttonType);
+                panel.Children.Add(b.button);
             }
             Grid.SetRow(panel, config.specialConfig.menuConfig.menuPosition.positionValue[Constants.GRID_POSITION].first);
             Grid.SetColumn(panel, config.specialConfig.menuConfig.menuPosition.positionValue[Constants.GRID_POSITION].second);
             panel.VerticalAlignment = VerticalAlignment.Center;
             g.Children.Add(panel);
         }
+
+        /*
+         * Создание событий для кнопок главного меню
+         * buttonType - тип кнопки меню
+         * 
+         */
+        private void BindingMenuButtonHandlers(Button btn, uint buttonType)
+        {
+            //RoutedEventHandler handler = new RoutedEventHandler(StartNewGame);
+            if (buttonType == Constants.START_NEW_GAME)
+                btn.Click += new RoutedEventHandler(StartNewGame);
+        }
+
+
+        //--Стандартные обработчики для кнопок главного меню--
+
+        /*
+         * Старт новой игры
+         */
+        private void StartNewGame(object sender, RoutedEventArgs e)
+        {
+            WindowConfig c = new WindowConfig();
+            c.screenHeight = 1920;
+            c.screenWidth = 1080;
+            c.mainGrid = new Grid();
+            c.mainGrid.RowDefinitions.Add(new RowDefinition());
+            c.mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            GameplayPassiveTemplate gameplayPassiveTemplate = new GameplayPassiveTemplate(c);
+            ObserverMainWindow.mainWindow.Content = gameplayPassiveTemplate.CreateTemplate().Content;
+        }
+
+        //----------------------------------------------------
     }
 }

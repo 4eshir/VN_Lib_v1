@@ -57,6 +57,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="KeypressHandler.cs" />
+    <Compile Include="MenuButton.cs" />
+    <Compile Include="ObserverMainWindow.cs" />
     <Compile Include="Pair.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="SpecialConfig.cs" />

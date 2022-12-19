@@ -32,18 +32,18 @@ namespace VN_Lib_v1
             scm.leftRightMargin = 200;
             scm.upDownMargin = 10;
             
-            List<Button> buttons = new List<Button>();
+            List<MenuButton> buttons = new List<MenuButton>();
             List<uint> heights = new List<uint>();
             heights.Add(50);
             Button b = new Button();
             b.Content = "Начать игру";
-            buttons.Add(b);
+            buttons.Add(new MenuButton(b, Constants.START_NEW_GAME));
             b = new Button();
             b.Content = "Опции";
-            buttons.Add(b);
+            buttons.Add(new MenuButton(b, Constants.OPTIONS));
             b = new Button();
             b.Content = "Выйти";
-            buttons.Add(b);
+            buttons.Add(new MenuButton(b, Constants.QUIT));
             scm.menuItems = buttons;
             scm.buttonHeights = heights;
             scm.menuType = Constants.VERTICAL_MENU;
@@ -68,11 +68,13 @@ namespace VN_Lib_v1
             c.col = 3;
 
             MainMenuTemplate mainMenuTemplate = new MainMenuTemplate(c);
-            MainWindow w = mainMenuTemplate.CreateTemplate();
-            w.Show();
-
-
-
+            ObserverMainWindow.windowConfig = c;
+            ObserverMainWindow.mainWindow = mainMenuTemplate.CreateTemplate();
+            ObserverMainWindow.mainWindow.Show();
+/*
+            GameplayPassiveTemplate gameplayPassiveTemplate = new GameplayPassiveTemplate(c);
+            ObserverMainWindow.mainWindow.Content = gameplayPassiveTemplate.CreateTemplate().Content;
+*/
         }
     }
 }
