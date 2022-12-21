@@ -35,5 +35,12 @@ namespace VN_Lib_v1
         public const uint OPTIONS = 2;
         public const uint QUIT = 3;
         //---------------------------------------
+
+        //--Константы для типов окна--
+        public const uint DEFAULT_WINDOW = 0;
+        public const uint MAIN_MENU_WINDOW = 1;
+        public const uint PASSIVE_GAMEPLAY_WINDOW = 2;
+        public const uint ACTIVE_GAMEPLAY_WINDOW = 3;
+        //----------------------------
     }
 }

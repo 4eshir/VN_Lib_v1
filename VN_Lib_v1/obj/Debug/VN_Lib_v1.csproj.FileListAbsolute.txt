@@ -34,3 +34,5 @@ C:\Users\user\Desktop\Projects\VN_Engine\VN_Lib_v1\VN_Lib_v1\obj\Debug\VN_Lib_v1
 C:\Users\user\Desktop\Projects\VN_Engine\VN_Lib_v1\VN_Lib_v1\obj\Debug\VN_Lib_v1.Properties.Resources.resources
 C:\Users\user\Desktop\Projects\VN_Engine\VN_Lib_v1\VN_Lib_v1\obj\Debug\VN_Lib_v1.csproj.GenerateResource.cache
 C:\Users\user\Desktop\Projects\VN_Engine\VN_Lib_v1\VN_Lib_v1\obj\Debug\VN_Lib_v1.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\Projects\VN_Engine\VN_Lib_v1\VN_Lib_v1\obj\Debug\ContextMenu.g.cs
+C:\Users\user\Desktop\Projects\VN_Engine\VN_Lib_v1\VN_Lib_v1\obj\Debug\ContextMenu.baml

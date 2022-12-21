@@ -36,6 +36,19 @@ namespace VN_Lib_v1
         }
         //------------
 
+        /*
+         * Тип текущего окна
+         */
+        private static uint _windowType;
+
+        //--Свойства--
+        public static uint windowType
+        {
+            set { _windowType = value; }
+            get { return _windowType; }
+        }
+        //------------
+
         //------------------------------
     }
 }

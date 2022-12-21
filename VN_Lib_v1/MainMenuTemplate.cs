@@ -175,12 +175,16 @@ namespace VN_Lib_v1
         private void StartNewGame(object sender, RoutedEventArgs e)
         {
             WindowConfig c = new WindowConfig();
-            c.screenHeight = 1920;
-            c.screenWidth = 1080;
-            c.mainGrid = new Grid();
-            c.mainGrid.RowDefinitions.Add(new RowDefinition());
-            c.mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            c.screenHeight = ObserverMainWindow.mainWindow.config.screenHeight;
+            c.screenWidth = ObserverMainWindow.mainWindow.config.screenWidth;
+            c.backgroundPath = "images\\back1.png";
+            c.colWidth = new List<uint>() { 10, 80, 10 };
+            c.rowHeight = new List<uint>() { 80, 20 };
+            c.row = 2;
+            c.col = 3;
+
             GameplayPassiveTemplate gameplayPassiveTemplate = new GameplayPassiveTemplate(c);
+            ObserverMainWindow.windowType = Constants.PASSIVE_GAMEPLAY_WINDOW;
             ObserverMainWindow.mainWindow.Content = gameplayPassiveTemplate.CreateTemplate().Content;
         }
 

@@ -49,7 +49,7 @@ namespace VN_Lib_v1
             scm.menuType = Constants.VERTICAL_MENU;
             scm.SetButtonHeights();
             scm.SetButtonMargins();
-            scm.menuPosition = new Position(Constants.GRID_POSITION, 1, 2);
+            scm.menuPosition = new Position(Constants.GRID_POSITION, 1, 1);
 
 
 
@@ -70,6 +70,7 @@ namespace VN_Lib_v1
             MainMenuTemplate mainMenuTemplate = new MainMenuTemplate(c);
             ObserverMainWindow.windowConfig = c;
             ObserverMainWindow.mainWindow = mainMenuTemplate.CreateTemplate();
+            ObserverMainWindow.windowType = Constants.MAIN_MENU_WINDOW;
             ObserverMainWindow.mainWindow.Show();
 /*
             GameplayPassiveTemplate gameplayPassiveTemplate = new GameplayPassiveTemplate(c);

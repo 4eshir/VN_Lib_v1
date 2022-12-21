@@ -56,12 +56,7 @@ namespace VN_Lib_v1
             //List<Object> elements = new List<Object>(); 
 
             SetLayoutSize(); //устанавливаем общий layout
-
-            //--Задаем фон общему layout--
-            /*BitmapImage back = new BitmapImage
-                (new Uri(config.backgroundPath, UriKind.Relative));
-            config.mainGrid.Background = new ImageBrush(back);*/
-            //----------------------------
+           
 
             window.Height = config.screenHeight;
             window.Width = config.screenWidth;
@@ -71,9 +66,15 @@ namespace VN_Lib_v1
             CreateGrid(config.mainGrid);
             //CreateMenuButton(config.mainGrid);
 
+            //--Задаем фон общему layout--
+            BitmapImage back = new BitmapImage
+                (new Uri(config.backgroundPath, UriKind.Relative));
+            config.mainGrid.Background = new ImageBrush(back);
+            //----------------------------
+
 
             window.Content = config.mainGrid;
-            window.RegisterName("MainLayout", config.mainGrid);
+            window.RegisterName("NewGameLayout", config.mainGrid);
 
             return window;
         }
@@ -94,11 +95,45 @@ namespace VN_Lib_v1
             RowDefinitionCollection rd = g.RowDefinitions;
             ColumnDefinitionCollection cd = g.ColumnDefinitions;
 
-            RowDefinition row = new RowDefinition();
-            rd.Add(row);
+            try
+            {
+                for (int i = 0; i != config.row; i++)
+                {
+                    RowDefinition row = new RowDefinition();
 
-            ColumnDefinition col = new ColumnDefinition();
-            cd.Add(col);
+                    try
+                    {
+                        row.Height = new GridLength(config.rowHeight[i] / config.rowHeight.Min(), GridUnitType.Star);
+                    }
+                    catch (ArgumentOutOfRangeException e) //если не задан массив размерности, то устанавливаются размеры по умолчанию
+                    {
+                        //row.Height = new GridLength();
+                    }
+
+                    rd.Add(row);
+                }
+
+
+                for (int j = 0; j < config.col; j++)
+                {
+                    ColumnDefinition col = new ColumnDefinition();
+
+                    try
+                    {
+                        col.Width = new GridLength(config.colWidth[j] / config.colWidth.Min(), GridUnitType.Star);
+                    }
+                    catch (ArgumentOutOfRangeException e) //если не задан массив размерности, то устанавливаются размеры по умолчанию
+                    {
+                        //col.Width = new GridLength();
+                    }
+
+                    cd.Add(col);
+                }
+            }
+            catch (DivideByZeroException e)
+            {
+                MessageBox.Show(e.Message);
+            }
 
             g.ShowGridLines = true;
         }

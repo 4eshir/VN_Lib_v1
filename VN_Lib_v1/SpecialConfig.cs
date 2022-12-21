@@ -25,6 +25,19 @@ namespace VN_Lib_v1
         }
         //------------
 
+        /*
+         * Конфигурации окна пассивного геймплея
+         */
+        private SpecialConfigPassiveGameplay _passiveGameplayConfig;
+
+        //--Свойства--
+        public SpecialConfigPassiveGameplay passiveGameplayConfig
+        {
+            set { _passiveGameplayConfig = value; }
+            get { return _passiveGameplayConfig; }
+        }
+        //------------
+
         //------------------------------
 
 

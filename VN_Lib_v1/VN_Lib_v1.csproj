@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ContextMenu.xaml.cs">
+      <DependentUpon>ContextMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="KeypressHandler.cs" />
     <Compile Include="MenuButton.cs" />
     <Compile Include="ObserverMainWindow.cs" />
@@ -63,7 +66,12 @@
     <Compile Include="Position.cs" />
     <Compile Include="SpecialConfig.cs" />
     <Compile Include="SpecialConfigMenu.cs" />
+    <Compile Include="SpecialConfigPassiveGameplay.cs" />
     <Compile Include="WindowConfig.cs" />
+    <Page Include="ContextMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainCore.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

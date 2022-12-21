@@ -114,5 +114,19 @@ namespace VN_Lib_v1
                 main_grid.Background = backBrush;
             }
         }
+
+
+        /*
+         * ------------------------------
+         * --Обработчики нажатия кнопок--
+         * ------------------------------
+         */
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            MessageBox.Show(e.Key.ToString());
+        }
+
+        //-------------------------------
     }
 }
