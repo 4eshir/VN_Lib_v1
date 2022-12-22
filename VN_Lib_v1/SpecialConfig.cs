@@ -41,10 +41,10 @@ namespace VN_Lib_v1
         /*
          * Конфигурации для контекстного меню
          */
-        private SpecialConfigContextMenu _contextMenuConfig;
+        private ConfigContextMenu _contextMenuConfig;
 
         //--Свойства--
-        public SpecialConfigContextMenu contextMenuConfig
+        public ConfigContextMenu contextMenuConfig
         {
             set { _contextMenuConfig = value; }
             get { return _contextMenuConfig; }

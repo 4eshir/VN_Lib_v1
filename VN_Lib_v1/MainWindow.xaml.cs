@@ -126,19 +126,42 @@ namespace VN_Lib_v1
         {
             if (e.Key.ToString() == "Escape")
             {
+                if (ObserverMainWindow.isContextMenu)
+                {
+                    ObserverMainWindow.contextMenu.Close();
+                    ObserverMainWindow.isContextMenu = false;
+                }
+
                 if (ObserverMainWindow.windowType != Constants.MAIN_MENU_WINDOW)
                 {
                     ContextMenu cm = new ContextMenu();
-                    SpecialConfigContextMenu sccm = new SpecialConfigContextMenu();
+                    ConfigContextMenu sccm = new ConfigContextMenu();
                     sccm.height = 500;
                     sccm.width = 350;
+                    sccm.backgroundPath = "images\\back_context.jpg";
+                    sccm.mainGrid = new Grid();
+
+
+
+                    BitmapImage back = new BitmapImage
+                        (new Uri(sccm.backgroundPath, UriKind.Relative));
+                    ImageBrush backBrush = new ImageBrush(back);
+
+                    sccm.mainGrid.Background = backBrush;
+
+                    cm.Content = sccm.mainGrid;
 
                     cm.Height = sccm.height;
                     cm.Width = sccm.width;
 
                     cm.Owner = ObserverMainWindow.mainWindow;
-                    cm.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+                    cm.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                     cm.ShowInTaskbar = false;
+                    cm.WindowStyle = WindowStyle.None;
+                    cm.ResizeMode = ResizeMode.NoResize;
+
+                    ObserverMainWindow.isContextMenu = true;
+                    ObserverMainWindow.contextMenu = cm;
 
                     cm.ShowDialog();
                 }

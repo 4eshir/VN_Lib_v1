@@ -24,6 +24,19 @@ namespace VN_Lib_v1
         //------------
 
         /*
+         * Контекстное меню
+         */
+        private static ContextMenu _contextMenu;
+
+        //--Свойства--
+        public static ContextMenu contextMenu
+        {
+            set { _contextMenu = value; }
+            get { return _contextMenu; }
+        }
+        //------------
+
+        /*
          * Конфигурации текущего окна
          */
         private static WindowConfig _windowConfig;
@@ -46,6 +59,19 @@ namespace VN_Lib_v1
         {
             set { _windowType = value; }
             get { return _windowType; }
+        }
+        //------------
+
+        /*
+         * Открыто ли контекстное меню
+         */
+        private static bool _isContextMenu;
+
+        //--Свойства--
+        public static bool isContextMenu
+        {
+            set { _isContextMenu = value; }
+            get { return _isContextMenu; }
         }
         //------------
 

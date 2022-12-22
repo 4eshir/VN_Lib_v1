@@ -23,5 +23,17 @@ namespace VN_Lib_v1
         {
             InitializeComponent();
         }
+
+        /*
+         * Обработчик нажатия кнопок
+         * при открытом контекстном меню
+         */
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key.ToString() == "Escape")
+            {
+                this.Close();
+            }
+        }
     }
 }

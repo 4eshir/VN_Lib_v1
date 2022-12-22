@@ -4,14 +4,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace VN_Lib_v1
 {
-    public class SpecialConfigContextMenu
+    public class ConfigContextMenu
     {
         //----------------------------
 
         //--Конфигурация главного меню
+
+        /*
+         * Переменная, хранящая основной слой
+         * приложения типа Grid
+         */
+        private Grid _mainGrid;
+
+        //--Свойства--
+        public Grid mainGrid
+        {
+            set { _mainGrid = value; }
+            get { return _mainGrid; }
+        }
+        //------------
+
+        /*
+         * Переменная, хранящая путь к фоновому
+         * изображению главного меню приложения
+         */
+        private string _backgroundPath;
+
+        //--Свойства--
+        public string backgroundPath
+        {
+            set { _backgroundPath = value; }
+            get { return _backgroundPath; }
+        }
+        //------------
 
         /*
          * Размеры окна
@@ -113,7 +142,7 @@ namespace VN_Lib_v1
 
         //--Конструкторы класса--
 
-        public SpecialConfigContextMenu()
+        public ConfigContextMenu()
         {
             _menuType = 0;
             _menuItems = new List<MenuButton>();
@@ -121,7 +150,7 @@ namespace VN_Lib_v1
             _width = 150;
         }
 
-        public SpecialConfigContextMenu(SpecialConfigContextMenu new_config)
+        public ConfigContextMenu(ConfigContextMenu new_config)
         {
             _menuType = new_config.menuType;
             _menuItems = new_config.menuItems;
@@ -133,7 +162,7 @@ namespace VN_Lib_v1
             SetButtonMargins();
         }
 
-        public SpecialConfigContextMenu(uint menuType, List<MenuButton> menuItems, List<uint> buttonHeights, uint newLeftRightMargin, uint newUpDownMargin, uint newHeight, uint newWidth)
+        public ConfigContextMenu(uint menuType, List<MenuButton> menuItems, List<uint> buttonHeights, uint newLeftRightMargin, uint newUpDownMargin, uint newHeight, uint newWidth)
         {
             _menuType = menuType;
             _menuItems = menuItems;
