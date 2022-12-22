@@ -4,15 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace VN_Lib_v1
 {
-    public class SpecialConfigMenu
+    public class SpecialConfigContextMenu
     {
         //----------------------------
 
         //--Конфигурация главного меню
+
+        /*
+         * Размеры окна
+         * width - ширина окна
+         * height - выоста окна
+         */
+        private uint _height;
+        private uint _width;
+
+        //--Свойства--
+        public uint height
+        {
+            set { _height = value; }
+            get { return _height; }
+        }
+
+        public uint width
+        {
+            set { _width = value; }
+            get { return _width; }
+        }
+        //------------
 
         /*
          * Тип меню
@@ -56,18 +77,6 @@ namespace VN_Lib_v1
         }
         //------------
 
-        /*
-         * Список позиционирование меню на Grid
-         */
-        private Position _menuPosition;
-
-        //--Свойства--
-        public Position menuPosition
-        {
-            set { _menuPosition = value; }
-            get { return _menuPosition; }
-        }
-        //------------
 
         /*
          * Отступы 
@@ -104,31 +113,35 @@ namespace VN_Lib_v1
 
         //--Конструкторы класса--
 
-        public SpecialConfigMenu()
+        public SpecialConfigContextMenu()
         {
             _menuType = 0;
             _menuItems = new List<MenuButton>();
+            _height = 200;
+            _width = 150;
         }
 
-        public SpecialConfigMenu(SpecialConfigMenu new_config)
+        public SpecialConfigContextMenu(SpecialConfigContextMenu new_config)
         {
             _menuType = new_config.menuType;
             _menuItems = new_config.menuItems;
-            _menuPosition = new_config.menuPosition;
             _leftRightMargin = new_config.leftRightMargin;
             _upDownMargin = new_config.upDownMargin;
+            _height = new_config.height;
+            _width = new_config.width;
 
             SetButtonMargins();
         }
 
-        public SpecialConfigMenu(uint menuType, List<MenuButton> menuItems, List<uint> buttonHeights, Position newPosition, uint newLeftRightMargin, uint newUpDownMargin)
+        public SpecialConfigContextMenu(uint menuType, List<MenuButton> menuItems, List<uint> buttonHeights, uint newLeftRightMargin, uint newUpDownMargin, uint newHeight, uint newWidth)
         {
             _menuType = menuType;
             _menuItems = menuItems;
             _menuButtonHeihgts = buttonHeights;
-            _menuPosition = newPosition;
             _leftRightMargin = newLeftRightMargin;
             _upDownMargin = newUpDownMargin;
+            _height = newHeight;
+            _width = newHeight;
 
             SetButtonMargins();
         }

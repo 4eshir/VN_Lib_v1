@@ -65,6 +65,7 @@
     <Compile Include="Pair.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="SpecialConfig.cs" />
+    <Compile Include="SpecialConfigContextMenu.cs" />
     <Compile Include="SpecialConfigMenu.cs" />
     <Compile Include="SpecialConfigPassiveGameplay.cs" />
     <Compile Include="WindowConfig.cs" />

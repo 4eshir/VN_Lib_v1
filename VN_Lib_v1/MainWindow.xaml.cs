@@ -124,7 +124,25 @@ namespace VN_Lib_v1
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            MessageBox.Show(e.Key.ToString());
+            if (e.Key.ToString() == "Escape")
+            {
+                if (ObserverMainWindow.windowType != Constants.MAIN_MENU_WINDOW)
+                {
+                    ContextMenu cm = new ContextMenu();
+                    SpecialConfigContextMenu sccm = new SpecialConfigContextMenu();
+                    sccm.height = 500;
+                    sccm.width = 350;
+
+                    cm.Height = sccm.height;
+                    cm.Width = sccm.width;
+
+                    cm.Owner = ObserverMainWindow.mainWindow;
+                    cm.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+                    cm.ShowInTaskbar = false;
+
+                    cm.ShowDialog();
+                }
+            }
         }
 
         //-------------------------------

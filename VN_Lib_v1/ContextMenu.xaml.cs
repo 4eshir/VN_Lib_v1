@@ -22,8 +22,6 @@ namespace VN_Lib_v1
         public ContextMenu()
         {
             InitializeComponent();
-            this.Height = 200;
-            this.Width = 150;
         }
     }
 }

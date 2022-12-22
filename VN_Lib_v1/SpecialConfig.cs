@@ -38,6 +38,19 @@ namespace VN_Lib_v1
         }
         //------------
 
+        /*
+         * Конфигурации для контекстного меню
+         */
+        private SpecialConfigContextMenu _contextMenuConfig;
+
+        //--Свойства--
+        public SpecialConfigContextMenu contextMenuConfig
+        {
+            set { _contextMenuConfig = value; }
+            get { return _contextMenuConfig; }
+        }
+        //------------
+
         //------------------------------
 
 
