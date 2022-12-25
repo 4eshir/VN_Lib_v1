@@ -59,13 +59,15 @@
     <Compile Include="ContextMenu.xaml.cs">
       <DependentUpon>ContextMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ContextMenuTemplate.cs" />
+    <Compile Include="Stationing.cs" />
     <Compile Include="KeypressHandler.cs" />
     <Compile Include="MenuButton.cs" />
     <Compile Include="ObserverMainWindow.cs" />
     <Compile Include="Pair.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="SpecialConfig.cs" />
-    <Compile Include="ConfigContextMenu.cs" />
+    <Compile Include="SpecialConfigContextMenu.cs" />
     <Compile Include="SpecialConfigMenu.cs" />
     <Compile Include="SpecialConfigPassiveGameplay.cs" />
     <Compile Include="WindowConfig.cs" />

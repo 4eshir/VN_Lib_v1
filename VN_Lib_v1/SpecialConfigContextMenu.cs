@@ -8,61 +8,11 @@ using System.Windows.Controls;
 
 namespace VN_Lib_v1
 {
-    public class ConfigContextMenu
+    public class SpecialConfigContextMenu
     {
         //----------------------------
 
-        //--Конфигурация главного меню
-
-        /*
-         * Переменная, хранящая основной слой
-         * приложения типа Grid
-         */
-        private Grid _mainGrid;
-
-        //--Свойства--
-        public Grid mainGrid
-        {
-            set { _mainGrid = value; }
-            get { return _mainGrid; }
-        }
-        //------------
-
-        /*
-         * Переменная, хранящая путь к фоновому
-         * изображению главного меню приложения
-         */
-        private string _backgroundPath;
-
-        //--Свойства--
-        public string backgroundPath
-        {
-            set { _backgroundPath = value; }
-            get { return _backgroundPath; }
-        }
-        //------------
-
-        /*
-         * Размеры окна
-         * width - ширина окна
-         * height - выоста окна
-         */
-        private uint _height;
-        private uint _width;
-
-        //--Свойства--
-        public uint height
-        {
-            set { _height = value; }
-            get { return _height; }
-        }
-
-        public uint width
-        {
-            set { _width = value; }
-            get { return _width; }
-        }
-        //------------
+        //--Конфигурация контекстного меню
 
         /*
          * Тип меню
@@ -83,10 +33,10 @@ namespace VN_Lib_v1
          * 1 элемент - одна высота для всех кнопок
          * 1+ элементов - различные высоты для всех кнопок
          */
-        private List<uint> _menuButtonHeihgts;
+        private List<Stationing> _menuButtonHeihgts;
 
         //--Свойства--
-        public List<uint> buttonHeights
+        public List<Stationing> buttonHeights
         {
             set { _menuButtonHeihgts = value; }
             get { return _menuButtonHeihgts; }
@@ -111,13 +61,39 @@ namespace VN_Lib_v1
          * Отступы 
          * * слева-справа
          * * сверху-снизу
-         * от пунктов меню
+         * от границ окна
          */
-        private uint _leftRightMargin;
-        private uint _upDownMargin;
+        private uint _leftRightMarginWindow;
+        private uint _upDownMarginWindow;
 
         //--Свойства--
-        public uint leftRightMargin
+        public uint leftRightMarginWindow
+        {
+            set { _leftRightMarginWindow = value; }
+            get { return _leftRightMarginWindow; }
+        }
+        //------------
+
+        //--Свойства--
+        public uint upDownMarginWindow
+        {
+            set { _upDownMarginWindow = value; }
+            get { return _upDownMarginWindow; }
+        }
+        //------------
+
+
+        /*
+         * Отступы 
+         * * слева-справа
+         * * сверху-снизу
+         * от пунктов меню
+         */
+        private Stationing _leftRightMargin;
+        private Stationing _upDownMargin;
+
+        //--Свойства--
+        public Stationing leftRightMargin
         {
             set { _leftRightMargin = value; }
             get { return _leftRightMargin; }
@@ -125,7 +101,7 @@ namespace VN_Lib_v1
         //------------
 
         //--Свойства--
-        public uint upDownMargin
+        public Stationing upDownMargin
         {
             set { _upDownMargin = value; }
             get { return _upDownMargin; }
@@ -142,44 +118,36 @@ namespace VN_Lib_v1
 
         //--Конструкторы класса--
 
-        public ConfigContextMenu()
+        public SpecialConfigContextMenu()
         {
             _menuType = 0;
             _menuItems = new List<MenuButton>();
-            _height = 200;
-            _width = 150;
+            _menuButtonHeihgts = new List<Stationing>();
         }
 
-        public ConfigContextMenu(ConfigContextMenu new_config)
+        public SpecialConfigContextMenu(SpecialConfigContextMenu new_config)
         {
             _menuType = new_config.menuType;
             _menuItems = new_config.menuItems;
             _leftRightMargin = new_config.leftRightMargin;
             _upDownMargin = new_config.upDownMargin;
-            _height = new_config.height;
-            _width = new_config.width;
-
-            SetButtonMargins();
+            _menuButtonHeihgts = new_config.buttonHeights;
         }
 
-        public ConfigContextMenu(uint menuType, List<MenuButton> menuItems, List<uint> buttonHeights, uint newLeftRightMargin, uint newUpDownMargin, uint newHeight, uint newWidth)
+        public SpecialConfigContextMenu(uint menuType, List<MenuButton> menuItems, List<Stationing> buttonHeights, Stationing newLeftRightMargin, Stationing newUpDownMargin)
         {
             _menuType = menuType;
             _menuItems = menuItems;
             _menuButtonHeihgts = buttonHeights;
             _leftRightMargin = newLeftRightMargin;
             _upDownMargin = newUpDownMargin;
-            _height = newHeight;
-            _width = newHeight;
-
-            SetButtonMargins();
         }
 
         //-----------------------
 
 
         //--Установка высоты кнопок меню--
-        public bool SetButtonHeights()
+        public bool SetButtonHeights(uint parentHeight)
         {
             if (_menuButtonHeihgts.Count > 1)
             {
@@ -187,25 +155,40 @@ namespace VN_Lib_v1
                     return false;
 
                 for (int i = 0; i < _menuItems.Count; i++)
-                    _menuItems[i].button.Height = _menuButtonHeihgts[i];
+                    if (_menuButtonHeihgts[i].type == Constants.PERCENT)
+                        _menuItems[i].button.Height = _menuButtonHeihgts[i].value * parentHeight / 100;
+                    else
+                        _menuItems[i].button.Height = _menuButtonHeihgts[i].value;
 
                 return true;
             }
 
             for (int i = 0; i < _menuItems.Count; i++)
-                _menuItems[i].button.Height = _menuButtonHeihgts[0];
+                if (_menuButtonHeihgts[0].type == Constants.PERCENT)
+                    _menuItems[i].button.Height = _menuButtonHeihgts[0].value * parentHeight / 100;
+                else
+                    _menuItems[i].button.Height = _menuButtonHeihgts[0].value;
 
             return true;
         }
         //--------------------------------
 
         //--Установка отступов--
-        public bool SetButtonMargins()
+        public bool SetButtonMargins(uint parentHeight)
         {
             if (_menuItems.Count < 1) return false;
 
             foreach (MenuButton btn in _menuItems)
-                btn.button.Margin = new Thickness(_leftRightMargin, _upDownMargin, _leftRightMargin, _upDownMargin);
+            {
+                uint leftRight = _leftRightMargin.value;
+                uint topRight = _upDownMargin.value;
+
+                if (_leftRightMargin.type == Constants.PERCENT) leftRight = _leftRightMargin.value * parentHeight / 100;
+                if (_upDownMargin.type == Constants.PERCENT) topRight = _upDownMargin.value * parentHeight / 100;
+                    
+                btn.button.Margin = new Thickness(leftRight, topRight, leftRight, topRight);
+            }
+                
 
             return true;
         }

@@ -19,9 +19,32 @@ namespace VN_Lib_v1
     /// </summary>
     public partial class ContextMenu : Window
     {
+        //---------------------------------
+
+        /*
+         * ----------------------------
+         * Переменная конфигурации окна
+         * ----------------------------
+         */
+        private WindowConfig _config;
+
+        public WindowConfig config
+        {
+            set { _config = value; }
+            get { return _config; }
+        }
+
+        //---------------------------------
+
         public ContextMenu()
         {
             InitializeComponent();
+        }
+
+        public ContextMenu(WindowConfig c)
+        {
+            InitializeComponent();
+            _config = c;
         }
 
         /*

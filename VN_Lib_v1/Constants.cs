@@ -42,5 +42,10 @@ namespace VN_Lib_v1
         public const uint PASSIVE_GAMEPLAY_WINDOW = 2;
         public const uint ACTIVE_GAMEPLAY_WINDOW = 3;
         //----------------------------
+
+        //--Константы для типов значений для Stationing--
+        public const uint PIXEL = 0;
+        public const uint PERCENT = 1;
+        //-----------------------------------------------
     }
 }

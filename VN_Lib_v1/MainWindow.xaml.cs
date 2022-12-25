@@ -134,34 +134,58 @@ namespace VN_Lib_v1
 
                 if (ObserverMainWindow.windowType != Constants.MAIN_MENU_WINDOW)
                 {
-                    ContextMenu cm = new ContextMenu();
-                    ConfigContextMenu sccm = new ConfigContextMenu();
-                    sccm.height = 500;
-                    sccm.width = 350;
-                    sccm.backgroundPath = "images\\back_context.jpg";
-                    sccm.mainGrid = new Grid();
+                    //--Создание окна контекстного меню--
 
+                    SpecialConfigContextMenu sccm = new SpecialConfigContextMenu();
 
+                    sccm.leftRightMargin = new Stationing(20, Constants.PERCENT);
+                    sccm.upDownMargin = new Stationing(5, Constants.PERCENT);
 
-                    BitmapImage back = new BitmapImage
-                        (new Uri(sccm.backgroundPath, UriKind.Relative));
-                    ImageBrush backBrush = new ImageBrush(back);
+                    List<Stationing> heights = new List<Stationing>();
+                    heights.Add(new Stationing(15, Constants.PERCENT));
 
-                    sccm.mainGrid.Background = backBrush;
+                    sccm.buttonHeights = heights;
 
-                    cm.Content = sccm.mainGrid;
+                    List<MenuButton> buttons = new List<MenuButton>();
+                    Button b = new Button();
+                    b.Content = "Продолжить";
+                    buttons.Add(new MenuButton(b, 0));
+                    b = new Button();
+                    b.Content = "Сохранить игру";
+                    buttons.Add(new MenuButton(b, 0));
+                    b = new Button();
+                    b.Content = "Загрузить игру";
+                    buttons.Add(new MenuButton(b, 0));
+                    b = new Button();
+                    b.Content = "Выйти в главное меню";
+                    buttons.Add(new MenuButton(b, 0));
 
-                    cm.Height = sccm.height;
-                    cm.Width = sccm.width;
+                    sccm.menuItems = buttons;
+                    sccm.menuType = Constants.VERTICAL_MENU;
 
-                    cm.Owner = ObserverMainWindow.mainWindow;
-                    cm.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                    cm.ShowInTaskbar = false;
-                    cm.WindowStyle = WindowStyle.None;
-                    cm.ResizeMode = ResizeMode.NoResize;
+                    sccm.upDownMarginWindow = 0;
+                    sccm.leftRightMarginWindow = 0;
+
+                    SpecialConfig sc = new SpecialConfig();
+                    sc.contextMenuConfig = sccm;
+
+                    WindowConfig c = new WindowConfig();
+
+                    c.backgroundPath = "images\\back_context.jpg";
+
+                    c.screenHeight = 500;
+                    c.screenWidth = 350;
+                    c.specialConfig = sc;
+
+                    ContextMenuTemplate cmt = new ContextMenuTemplate(c);
+
+                    ContextMenu cm = cmt.CreateTemplate();
 
                     ObserverMainWindow.isContextMenu = true;
                     ObserverMainWindow.contextMenu = cm;
+
+                    //-----------------------------------
+
 
                     cm.ShowDialog();
                 }
