@@ -174,7 +174,7 @@ namespace VN_Lib_v1
         //--------------------------------
 
         //--Установка отступов--
-        public bool SetButtonMargins(uint parentHeight)
+        public bool SetButtonMargins(uint parentHeight, uint parentWidth)
         {
             if (_menuItems.Count < 1) return false;
 
@@ -183,7 +183,7 @@ namespace VN_Lib_v1
                 uint leftRight = _leftRightMargin.value;
                 uint topRight = _upDownMargin.value;
 
-                if (_leftRightMargin.type == Constants.PERCENT) leftRight = _leftRightMargin.value * parentHeight / 100;
+                if (_leftRightMargin.type == Constants.PERCENT) leftRight = _leftRightMargin.value * parentWidth / 100;
                 if (_upDownMargin.type == Constants.PERCENT) topRight = _upDownMargin.value * parentHeight / 100;
                     
                 btn.button.Margin = new Thickness(leftRight, topRight, leftRight, topRight);

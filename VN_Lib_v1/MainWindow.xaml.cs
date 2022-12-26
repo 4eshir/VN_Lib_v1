@@ -149,6 +149,8 @@ namespace VN_Lib_v1
                     List<MenuButton> buttons = new List<MenuButton>();
                     Button b = new Button();
                     b.Content = "Продолжить";
+                    b.FontSize = 20;
+                    b.FontFamily = new FontFamily("Century");
                     buttons.Add(new MenuButton(b, 0));
                     b = new Button();
                     b.Content = "Сохранить игру";

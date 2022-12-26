@@ -78,7 +78,7 @@ namespace VN_Lib_v1
             //----------------------------
 
             config.specialConfig.contextMenuConfig.SetButtonHeights(config.screenHeight);
-            config.specialConfig.contextMenuConfig.SetButtonMargins(config.screenHeight);
+            config.specialConfig.contextMenuConfig.SetButtonMargins(config.screenHeight, config.screenWidth);
 
             window.Content = config.mainGrid;
             window.RegisterName("NewGameLayout", config.mainGrid);
