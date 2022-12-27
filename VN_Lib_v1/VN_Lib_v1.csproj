@@ -63,7 +63,7 @@
     <Compile Include="Stationing.cs" />
     <Compile Include="KeypressHandler.cs" />
     <Compile Include="MenuButton.cs" />
-    <Compile Include="ObserverMainWindow.cs" />
+    <Compile Include="ObserverGeneral.cs" />
     <Compile Include="Pair.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="SpecialConfig.cs" />

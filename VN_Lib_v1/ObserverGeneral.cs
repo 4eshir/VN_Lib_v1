@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VN_Lib_v1
 {
-    static class ObserverMainWindow
+    static class ObserverGeneral
     {
         //------------------------------
 
@@ -48,6 +48,20 @@ namespace VN_Lib_v1
             get { return _windowConfig; }
         }
         //------------
+
+        /*
+         * Конфигурации главного меню
+         */
+        private static WindowConfig _windowConfigMainMenu;
+
+        //--Свойства--
+        public static WindowConfig windowConfigMainMenu
+        {
+            set { _windowConfigMainMenu = value; }
+            get { return _windowConfigMainMenu; }
+        }
+        //------------
+
 
         /*
          * Тип текущего окна

@@ -100,7 +100,7 @@ namespace VN_Lib_v1
             foreach (Object btn in config.specialConfig.contextMenuConfig.menuItems)
             {
                 MenuButton btn1 = (MenuButton)btn;
-                //BindingMenuButtonHandlers(btn1.button, btn1.buttonType);
+                BindingMenuButtonHandlers(btn1.button, btn1.buttonType);
                 panel.Children.Add(btn1.button);
             }
 
@@ -114,7 +114,7 @@ namespace VN_Lib_v1
 
         public void SetWindowProperties(ContextMenu cm)
         {
-            cm.Owner = ObserverMainWindow.mainWindow;
+            cm.Owner = ObserverGeneral.mainWindow;
             cm.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             cm.ShowInTaskbar = false;
             cm.WindowStyle = WindowStyle.None;
@@ -122,7 +122,46 @@ namespace VN_Lib_v1
         }
 
 
-            
+        /*
+         * Создание событий для кнопок главного меню
+         * buttonType - тип кнопки меню
+         * 
+         */
+        private void BindingMenuButtonHandlers(Button btn, uint buttonType)
+        {
+            //RoutedEventHandler handler = new RoutedEventHandler(StartNewGame);
+            if (buttonType == Constants.RETURN_TO_THE_GAME)
+                btn.Click += new RoutedEventHandler(ContinueGame);
+
+            if (buttonType == Constants.BACK_TO_MAIN_MENU)
+                btn.Click += new RoutedEventHandler(BackToMenu);
+        }
+
+
+        //--Стандартные обработчики для кнопок контекстного меню--
+
+        /*
+         * Обработчик для кнопки типа "Продолжить игру"
+         */
+        private void ContinueGame(object sender, RoutedEventArgs e)
+        {
+            ObserverGeneral.contextMenu.Close();
+            ObserverGeneral.contextMenu = null;
+            ObserverGeneral.isContextMenu = false;
+        }
+
+        private void BackToMenu(object sender, RoutedEventArgs e)
+        {
+            ObserverGeneral.contextMenu.Close();
+            ObserverGeneral.contextMenu = null;
+            ObserverGeneral.isContextMenu = false;
+
+            MainMenuTemplate mainMenuTemplate = new MainMenuTemplate(ObserverGeneral.windowConfigMainMenu);
+            ObserverGeneral.windowConfig = ObserverGeneral.windowConfigMainMenu;
+            ObserverGeneral.mainWindow = mainMenuTemplate.CreateTemplate();
+            ObserverGeneral.windowType = Constants.MAIN_MENU_WINDOW;
+        }
+
 
 
         //------------------------------------------------

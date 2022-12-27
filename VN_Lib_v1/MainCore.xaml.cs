@@ -68,10 +68,11 @@ namespace VN_Lib_v1
             c.col = 3;
 
             MainMenuTemplate mainMenuTemplate = new MainMenuTemplate(c);
-            ObserverMainWindow.windowConfig = c;
-            ObserverMainWindow.mainWindow = mainMenuTemplate.CreateTemplate();
-            ObserverMainWindow.windowType = Constants.MAIN_MENU_WINDOW;
-            ObserverMainWindow.mainWindow.Show();
+            ObserverGeneral.windowConfig = c;
+            ObserverGeneral.mainWindow = mainMenuTemplate.CreateTemplate();
+            ObserverGeneral.windowType = Constants.MAIN_MENU_WINDOW;
+            ObserverGeneral.windowConfigMainMenu = c;
+            ObserverGeneral.mainWindow.Show();
 /*
             GameplayPassiveTemplate gameplayPassiveTemplate = new GameplayPassiveTemplate(c);
             ObserverMainWindow.mainWindow.Content = gameplayPassiveTemplate.CreateTemplate().Content;

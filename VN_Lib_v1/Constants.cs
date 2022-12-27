@@ -29,12 +29,15 @@ namespace VN_Lib_v1
         public const int FROM_MAIN_MENU = 2;
         //----------------------------------------
 
-        //--Константы для функций главного меню--
+        //--Константы для функций главного/контекстного меню--
         public const uint DEFAULT_BUTTON = 0;
         public const uint START_NEW_GAME = 1;
         public const uint OPTIONS = 2;
         public const uint QUIT = 3;
-        //---------------------------------------
+
+        public const uint RETURN_TO_THE_GAME = 100;
+        public const uint BACK_TO_MAIN_MENU = 101;
+        //----------------------------------------------------
 
         //--Константы для типов окна--
         public const uint DEFAULT_WINDOW = 0;

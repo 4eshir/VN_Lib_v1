@@ -126,13 +126,13 @@ namespace VN_Lib_v1
         {
             if (e.Key.ToString() == "Escape")
             {
-                if (ObserverMainWindow.isContextMenu)
+                if (ObserverGeneral.isContextMenu)
                 {
-                    ObserverMainWindow.contextMenu.Close();
-                    ObserverMainWindow.isContextMenu = false;
+                    ObserverGeneral.contextMenu.Close();
+                    ObserverGeneral.isContextMenu = false;
                 }
 
-                if (ObserverMainWindow.windowType != Constants.MAIN_MENU_WINDOW)
+                if (ObserverGeneral.windowType != Constants.MAIN_MENU_WINDOW)
                 {
                     //--Создание окна контекстного меню--
 
@@ -151,16 +151,16 @@ namespace VN_Lib_v1
                     b.Content = "Продолжить";
                     b.FontSize = 20;
                     b.FontFamily = new FontFamily("Century");
-                    buttons.Add(new MenuButton(b, 0));
+                    buttons.Add(new MenuButton(b, Constants.RETURN_TO_THE_GAME));
                     b = new Button();
                     b.Content = "Сохранить игру";
-                    buttons.Add(new MenuButton(b, 0));
+                    buttons.Add(new MenuButton(b, Constants.DEFAULT_BUTTON));
                     b = new Button();
                     b.Content = "Загрузить игру";
-                    buttons.Add(new MenuButton(b, 0));
+                    buttons.Add(new MenuButton(b, Constants.DEFAULT_BUTTON));
                     b = new Button();
                     b.Content = "Выйти в главное меню";
-                    buttons.Add(new MenuButton(b, 0));
+                    buttons.Add(new MenuButton(b, Constants.BACK_TO_MAIN_MENU));
 
                     sccm.menuItems = buttons;
                     sccm.menuType = Constants.VERTICAL_MENU;
@@ -183,8 +183,8 @@ namespace VN_Lib_v1
 
                     ContextMenu cm = cmt.CreateTemplate();
 
-                    ObserverMainWindow.isContextMenu = true;
-                    ObserverMainWindow.contextMenu = cm;
+                    ObserverGeneral.isContextMenu = true;
+                    ObserverGeneral.contextMenu = cm;
 
                     //-----------------------------------
 
